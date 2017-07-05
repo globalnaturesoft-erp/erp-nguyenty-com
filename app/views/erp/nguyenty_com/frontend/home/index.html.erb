@@ -1,0 +1,35 @@
+<div id="calltoaction">
+    <%= render "erp/nguyenty_com/frontend/modules/info" %>
+</div>
+<!--#call to action-->
+<% @picture_category.each do |picture_category| %>
+    <% if picture_category.children.present? %>
+        <h2>
+            <p align="center"><%= picture_category.picture_category_name %></p>
+        </h2>
+        <div class="row1">
+            <% picture_category.children.each do |child_category| %>
+            <div id="box1" class="col">
+                <a href="<%= detail_category_link(child_category) %>" title="<%= child_category.picture_category_name %>">
+                    <%= image_tag child_category.image_url.thumb_small, title: "", alt: "", size: "200x200" %>
+                    <p align="right">Xem thêm<<</p>
+                </a>
+            </div>
+            <% end %>
+        </div>
+    <% else %>
+        <h2>
+            <p align="center"><%= picture_category.picture_category_name %></p>
+        </h2>
+        <div class="row1">
+            <% picture_category.limit_pictures.each do |picture| %>
+            <div id="box1" class="col">
+                <a href="<%= picture_category_link(picture_category) %>" title="<%= picture_category.picture_category_name %>">
+                    <%= image_tag picture.image_url.thumb_small, title: "", alt: "", size: "200x200" %>
+                    <p align="right">Xem thêm<<</p>
+                </a>
+            </div>
+            <% end %>
+        </div>
+    <% end %>
+<% end %>

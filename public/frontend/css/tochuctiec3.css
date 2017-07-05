@@ -1,0 +1,197 @@
+﻿* {
+ box-sizing: border-box;
+ -webkit-box-sizing: border-box;
+ -moz-box-sizing: border-box;
+ 
+}
+
+body {
+	background-image:url("images/xam10.jpg" ) ;
+	
+ font-family: Arial,sans-serif;
+ font-weight: 150;
+ line-height: 1.254em;
+ margin: 0;
+ padding: 0;
+width:100%;
+
+
+
+}
+a {
+
+ text-decoration: none;
+ color:red;
+ transition: all 0.5s;
+ -moz-transition: all 0.5s;
+ -webkit-transition: all 0.5s;
+
+}
+
+a:hover {
+ color: green;
+
+}
+
+
+/*==Chia cột cho website==*/
+#container {
+
+ padding-left: 250px;
+ position: relative;
+ left: 0;
+ 
+
+}
+#menu {
+
+ position: fixed;
+ height: 100%;
+ background-image:url("images/mauvang03.jpg");
+ width: 250px;
+ left: 0;
+ 
+ 
+}
+
+/*==Trang trí menu==*/
+#menu ul {
+ list-style-type: none;
+ padding: 0px;
+ margin: 0px;
+ 
+ 
+}
+
+#menu ul li {
+ line-height: 14px;
+ height: 4.3em;
+ transition: all 1s;
+ -moz-transition: all 1s;
+ -webkit-transition: all 1s;
+ font-weight:bold;
+font-size:14px;
+
+
+}
+
+#menu li a {
+
+ display: block;
+ color: #E6152A;
+ padding: 0.5em 0.5em ;
+ border-bottom: 2px solid #FFFF99;
+ height:100%;
+
+}
+
+#menu a:hover {
+ background :#FFFFCC;
+ color:red;
+
+}
+/*==banner==*/
+#logo{
+
+
+
+}
+
+/*==Trang trí khung content==*/
+#content {
+
+ padding: 1em 6em;
+
+}
+
+/*==
+
+/*==Trang trí header của content==*/
+#header{
+
+ text-align: center;
+
+
+}
+
+
+
+#slogan {
+ 
+ font-size: 15pt;
+
+
+}
+
+
+
+/*=============*/
+
+
+#contentimages {
+	width: 900px;
+	margin: 10px auto 0 auto;
+	padding: 0 60px 30px 60px;
+	border: solid 1px #cbcbcb;
+	background: #fafafa;
+	-moz-box-shadow: 0px 0px 10px #cbcbcb;
+	-webkit-box-shadow: 0px 0px 10px #cbcbcb;
+}
+
+h1 {
+	margin: 10px 0 15px 0;
+	font-size: 20px;
+	font-weight: bold;
+	font-family: Arial;
+}
+
+h1 span {
+	font-size: 50%;
+	
+}
+
+hr {
+	border: none;
+	height: 1px; line-height: 1px;
+	background: #E5E5E5;
+	margin-bottom: 20px;
+	padding: 0;
+}
+
+p {
+	margin: 0;
+	padding: 7px 0;
+}
+
+a {
+	outline: none;
+}
+
+a img {
+	border: 1px solid #BBB;
+	padding: 2px;
+	margin: 10px 20px 10px 0;
+	vertical-align: top;
+}
+
+a img.last {
+	margin-right: 0;	
+}
+
+ul {
+	margin-bottom: 24px;
+	padding-left: 30px;
+}
+
+
+/*=============*/
+
+/*==Footer==*/
+#footer {
+ font-size: 85%;
+ border-top: 3px solid #454545;
+ color: black;
+ padding: 1em 0.5em;
+ text-align:center;
+ font-weight:bold;
+}

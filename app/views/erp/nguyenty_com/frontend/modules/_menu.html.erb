@@ -1,0 +1,16 @@
+<ul>
+    <li>
+        <a href="<%= erp_nguyenty_com.root_path %>"><p align="center">Trang Chủ</p></a>
+    </li>
+    <% Erp::Pictures::PictureCategory.get_main_category.each do |picture_category| %>
+    <li>
+        <a href="<%= picture_category_link(picture_category) %>">
+            <p align="center"><%= picture_category.picture_category_name %></p>
+        </a>
+    </li>
+    <% end %>
+    <li>
+        <a href="<%= erp_nguyenty_com.contact_path %>"><p align="center">Liên Hệ</p></a>
+    </li>
+</ul>
+<%= image_tag "/frontend/img/logont.jpg", title: "Logo website Nguyễn Ty", size: "250x195" %>

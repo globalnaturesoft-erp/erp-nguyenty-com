@@ -1,0 +1,300 @@
+﻿* {
+ box-sizing: border-box;
+ -webkit-box-sizing: border-box;
+ -moz-box-sizing: border-box;
+ 
+}
+
+body {
+	background-image:url("../../frontend/img/xam10.jpg" ) ;
+	
+ font-family: Arial,sans-serif;
+ font-weight: 150;
+ line-height: 1.254em;
+ margin: 0;
+ padding: 0;
+width:100%;
+
+
+
+}
+a {
+
+ text-decoration: none;
+ color:red;
+ transition: all 0.5s;
+ -moz-transition: all 0.5s;
+ -webkit-transition: all 0.5s;
+
+}
+
+a:hover {
+ color: green;
+
+}
+
+
+/*==Chia cột cho website==*/
+#container {
+
+ padding-left: 250px;
+ position: relative;
+ left: 0;
+
+
+}
+#menu {
+
+ position: fixed;
+ height: 100%;
+ background-image:url("../../frontend/img/mauvang03.jpg");
+ width: 250px;
+ left: 0;
+ 
+ 
+}
+
+/*==Trang trí menu==*/
+#menu ul {
+ list-style-type: none;
+ padding: 0px;
+ margin: 0px;
+ 
+ 
+}
+
+#menu ul li {
+ line-height: 14px;
+ height: 4.3em;
+ transition: all 1s;
+ -moz-transition: all 1s;
+ -webkit-transition: all 1s;
+ font-weight:bold;
+font-size:14px;
+
+
+}
+
+#menu li a {
+
+ display: block;
+ color: #E6152A;
+ padding: 0.5em 0.5em ;
+ border-bottom: 2px solid #FFFF99;
+ height:100%;
+
+}
+
+#menu a:hover {
+ background :#FFFFCC;
+ color:red;
+
+}
+/*==banner==*/
+#logo{
+
+
+
+}
+
+/*==Trang trí khung content==*/
+#content {
+
+ padding: 1em 6em;
+
+}
+
+/*==
+
+/*==Trang trí header của content==*/
+#header{
+
+ text-align: center;
+
+
+}
+
+
+
+#slogan {
+ 
+ font-size: 15pt;
+
+
+}
+
+
+#calltoaction{
+
+font-size:15pt;
+color:#ffd4aa;
+border: 3px solid grey;
+background-color:lightgreen;
+line-height:1.7em;
+padding: 1em 2%;
+text-align:justify;
+text-indent:25px;
+
+}
+#hinh{
+float:left;
+padding:10px;
+
+}
+
+/*=============*/
+
+
+
+/*==Chia cột phần content==*/
+.row1 {
+ overflow: auto;
+ margin: 0.5em auto;
+
+ 
+}
+
+.row1 .col {
+ float: left;
+ width: 25%;
+ text-align:center;
+ color:black;
+  
+}
+
+
+.row1 .col:last-child {
+ float: right;
+ margin-right: 0;
+ text-align:center;
+
+
+}
+
+/*=============*/
+
+/*==Chia cột phần content==*/
+.row2 {
+ overflow: auto;
+ margin: 0.5em auto;
+
+ 
+}
+.row2 .col2 {
+ float: left;
+ width: 25%;
+ text-align:center;
+ color:black;
+  
+}
+
+
+.row2 .col2:last-child {
+ float: right;
+ margin-right: 0;
+ text-align:center;
+
+}
+
+
+/*=============*/
+
+
+/*==Chia cột phần content==*/
+.row3 {
+
+ overflow: auto;
+ margin: 0.5em auto;
+
+}
+
+.row3 .col3 {
+
+ float: left;
+ width: 25%;
+ text-align:center;
+ color:black;
+ 
+	
+}
+
+.row3 .col3:last-child {
+ float: right;
+ margin-right: 0;
+ text-align:center;
+
+}
+
+/*=============*/
+
+
+/*==Chia cột phần content==*/
+.row4 {
+ overflow: auto;
+ margin: 0.5em auto;
+
+ 
+}
+
+.row4 .col4 {
+ float: left;
+ width: 25%;
+ text-align:center;
+ color:black;
+ 
+}
+
+.row4 .col4:last-child {
+ float: right;
+ margin-right: 0;
+ text-align:center;
+}
+
+/*=============*/
+
+
+/*==Chia cột phần content==*/
+.row5 {
+
+ overflow: auto;
+ margin: 0.5em auto;
+
+ 
+}
+.row5 .col5 {
+
+ float: left;
+ width: 25%;
+ text-align:center;
+ color:black;
+ 
+}
+
+	
+.row5 .col5:last-child {
+ float: right;
+ margin-right: 0;
+ text-align:center;
+
+}
+
+/*=============*/
+
+
+
+/*==music==*/
+#music{
+	text-align:center;
+	
+	
+}
+/*==Footer==*/
+#footer {
+ font-size: 85%;
+ border-top: 3px solid #454545;
+ color: black;
+ padding: 1em 0.5em;
+ text-align:center;
+ font-weight:bold;
+}
+

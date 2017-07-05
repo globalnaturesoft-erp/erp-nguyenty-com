@@ -1,0 +1,23 @@
+<% if @picture_category.children.present? %>
+<div id="contentimages" align="center">
+    <% @picture_category.children.each do |child_picture_category| %>
+        <h1 align="center"><%= child_picture_category.picture_category_name %></h1>
+        <h3><%= child_picture_category.description.html_safe if child_picture_category.description.html_safe.present? %></h3>
+        <% child_picture_category.pictures.each do |picture| %>            
+            <a data-fancybox="gallery" href="<%= picture.image_url.thumb_medium %>">
+                <%= image_tag picture.image_url.thumb_small %>
+            </a>
+        <% end %>
+    <% end %>
+</div>
+<% else %>
+<div id="contentimages" align="center">
+    <h1 align="center"><%= @picture_category.picture_category_name %></h1>
+    <h3><%= @picture_category.description.html_safe if @picture_category.description.html_safe.present? %></h3>
+    <% @picture_category.pictures.each do |picture| %>            
+        <a data-fancybox="gallery" href="<%= picture.image_url.thumb_medium %>">
+            <%= image_tag picture.image_url.thumb_small %>
+        </a>
+    <% end %>
+</div>
+<% end %>
