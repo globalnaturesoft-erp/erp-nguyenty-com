@@ -1,0 +1,847 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.5.7
+-- Dumped by pg_dump version 9.5.7
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: nguyenngocson0811
+--
+
+CREATE TABLE ar_internal_metadata (
+    key character varying NOT NULL,
+    value character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE ar_internal_metadata OWNER TO nguyenngocson0811;
+
+--
+-- Name: erp_banners_banners; Type: TABLE; Schema: public; Owner: nguyenngocson0811
+--
+
+CREATE TABLE erp_banners_banners (
+    id integer NOT NULL,
+    image_url character varying,
+    name character varying,
+    link_url character varying,
+    archived boolean DEFAULT false,
+    category_id integer,
+    creator_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    custom_order integer
+);
+
+
+ALTER TABLE erp_banners_banners OWNER TO nguyenngocson0811;
+
+--
+-- Name: erp_banners_banners_id_seq; Type: SEQUENCE; Schema: public; Owner: nguyenngocson0811
+--
+
+CREATE SEQUENCE erp_banners_banners_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE erp_banners_banners_id_seq OWNER TO nguyenngocson0811;
+
+--
+-- Name: erp_banners_banners_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: nguyenngocson0811
+--
+
+ALTER SEQUENCE erp_banners_banners_id_seq OWNED BY erp_banners_banners.id;
+
+
+--
+-- Name: erp_banners_categories; Type: TABLE; Schema: public; Owner: nguyenngocson0811
+--
+
+CREATE TABLE erp_banners_categories (
+    id integer NOT NULL,
+    name character varying,
+    width integer,
+    height integer,
+    image_scale character varying,
+    archived boolean DEFAULT false,
+    "position" character varying,
+    creator_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE erp_banners_categories OWNER TO nguyenngocson0811;
+
+--
+-- Name: erp_banners_categories_id_seq; Type: SEQUENCE; Schema: public; Owner: nguyenngocson0811
+--
+
+CREATE SEQUENCE erp_banners_categories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE erp_banners_categories_id_seq OWNER TO nguyenngocson0811;
+
+--
+-- Name: erp_banners_categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: nguyenngocson0811
+--
+
+ALTER SEQUENCE erp_banners_categories_id_seq OWNED BY erp_banners_categories.id;
+
+
+--
+-- Name: erp_editor_uploads; Type: TABLE; Schema: public; Owner: nguyenngocson0811
+--
+
+CREATE TABLE erp_editor_uploads (
+    id integer NOT NULL,
+    image_url character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE erp_editor_uploads OWNER TO nguyenngocson0811;
+
+--
+-- Name: erp_editor_uploads_id_seq; Type: SEQUENCE; Schema: public; Owner: nguyenngocson0811
+--
+
+CREATE SEQUENCE erp_editor_uploads_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE erp_editor_uploads_id_seq OWNER TO nguyenngocson0811;
+
+--
+-- Name: erp_editor_uploads_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: nguyenngocson0811
+--
+
+ALTER SEQUENCE erp_editor_uploads_id_seq OWNED BY erp_editor_uploads.id;
+
+
+--
+-- Name: erp_pictures_picture_categories; Type: TABLE; Schema: public; Owner: nguyenngocson0811
+--
+
+CREATE TABLE erp_pictures_picture_categories (
+    id integer NOT NULL,
+    image_url character varying,
+    name character varying,
+    description text,
+    parent_id integer,
+    custom_order integer,
+    level integer,
+    archived boolean DEFAULT false,
+    creator_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE erp_pictures_picture_categories OWNER TO nguyenngocson0811;
+
+--
+-- Name: erp_pictures_picture_categories_id_seq; Type: SEQUENCE; Schema: public; Owner: nguyenngocson0811
+--
+
+CREATE SEQUENCE erp_pictures_picture_categories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE erp_pictures_picture_categories_id_seq OWNER TO nguyenngocson0811;
+
+--
+-- Name: erp_pictures_picture_categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: nguyenngocson0811
+--
+
+ALTER SEQUENCE erp_pictures_picture_categories_id_seq OWNED BY erp_pictures_picture_categories.id;
+
+
+--
+-- Name: erp_pictures_pictures; Type: TABLE; Schema: public; Owner: nguyenngocson0811
+--
+
+CREATE TABLE erp_pictures_pictures (
+    id integer NOT NULL,
+    image_url character varying,
+    custom_order integer,
+    picture_category_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE erp_pictures_pictures OWNER TO nguyenngocson0811;
+
+--
+-- Name: erp_pictures_pictures_id_seq; Type: SEQUENCE; Schema: public; Owner: nguyenngocson0811
+--
+
+CREATE SEQUENCE erp_pictures_pictures_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE erp_pictures_pictures_id_seq OWNER TO nguyenngocson0811;
+
+--
+-- Name: erp_pictures_pictures_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: nguyenngocson0811
+--
+
+ALTER SEQUENCE erp_pictures_pictures_id_seq OWNED BY erp_pictures_pictures.id;
+
+
+--
+-- Name: erp_users; Type: TABLE; Schema: public; Owner: nguyenngocson0811
+--
+
+CREATE TABLE erp_users (
+    id integer NOT NULL,
+    email character varying DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying,
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    sign_in_count integer DEFAULT 0 NOT NULL,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip character varying,
+    last_sign_in_ip character varying,
+    provider character varying,
+    uid character varying,
+    backend_access boolean DEFAULT false,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    name character varying,
+    avatar character varying,
+    timezone character varying,
+    active boolean DEFAULT false,
+    creator_id integer,
+    permissions text,
+    confirmation_token character varying,
+    confirmed_at timestamp without time zone,
+    confirmation_sent_at timestamp without time zone
+);
+
+
+ALTER TABLE erp_users OWNER TO nguyenngocson0811;
+
+--
+-- Name: erp_users_id_seq; Type: SEQUENCE; Schema: public; Owner: nguyenngocson0811
+--
+
+CREATE SEQUENCE erp_users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE erp_users_id_seq OWNER TO nguyenngocson0811;
+
+--
+-- Name: erp_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: nguyenngocson0811
+--
+
+ALTER SEQUENCE erp_users_id_seq OWNED BY erp_users.id;
+
+
+--
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: nguyenngocson0811
+--
+
+CREATE TABLE schema_migrations (
+    version character varying NOT NULL
+);
+
+
+ALTER TABLE schema_migrations OWNER TO nguyenngocson0811;
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: nguyenngocson0811
+--
+
+ALTER TABLE ONLY erp_banners_banners ALTER COLUMN id SET DEFAULT nextval('erp_banners_banners_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: nguyenngocson0811
+--
+
+ALTER TABLE ONLY erp_banners_categories ALTER COLUMN id SET DEFAULT nextval('erp_banners_categories_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: nguyenngocson0811
+--
+
+ALTER TABLE ONLY erp_editor_uploads ALTER COLUMN id SET DEFAULT nextval('erp_editor_uploads_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: nguyenngocson0811
+--
+
+ALTER TABLE ONLY erp_pictures_picture_categories ALTER COLUMN id SET DEFAULT nextval('erp_pictures_picture_categories_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: nguyenngocson0811
+--
+
+ALTER TABLE ONLY erp_pictures_pictures ALTER COLUMN id SET DEFAULT nextval('erp_pictures_pictures_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: nguyenngocson0811
+--
+
+ALTER TABLE ONLY erp_users ALTER COLUMN id SET DEFAULT nextval('erp_users_id_seq'::regclass);
+
+
+--
+-- Data for Name: ar_internal_metadata; Type: TABLE DATA; Schema: public; Owner: nguyenngocson0811
+--
+
+COPY ar_internal_metadata (key, value, created_at, updated_at) FROM stdin;
+environment	development	2017-07-04 16:10:34.053114	2017-07-04 16:10:34.053114
+\.
+
+
+--
+-- Data for Name: erp_banners_banners; Type: TABLE DATA; Schema: public; Owner: nguyenngocson0811
+--
+
+COPY erp_banners_banners (id, image_url, name, link_url, archived, category_id, creator_id, created_at, updated_at, custom_order) FROM stdin;
+\.
+
+
+--
+-- Name: erp_banners_banners_id_seq; Type: SEQUENCE SET; Schema: public; Owner: nguyenngocson0811
+--
+
+SELECT pg_catalog.setval('erp_banners_banners_id_seq', 2, true);
+
+
+--
+-- Data for Name: erp_banners_categories; Type: TABLE DATA; Schema: public; Owner: nguyenngocson0811
+--
+
+COPY erp_banners_categories (id, name, width, height, image_scale, archived, "position", creator_id, created_at, updated_at) FROM stdin;
+1	Main Slideshow	1099	400	fill	f	home_slideshow	1	2017-07-06 02:16:08.757715	2017-07-06 02:16:16.447297
+\.
+
+
+--
+-- Name: erp_banners_categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: nguyenngocson0811
+--
+
+SELECT pg_catalog.setval('erp_banners_categories_id_seq', 1, true);
+
+
+--
+-- Data for Name: erp_editor_uploads; Type: TABLE DATA; Schema: public; Owner: nguyenngocson0811
+--
+
+COPY erp_editor_uploads (id, image_url, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: erp_editor_uploads_id_seq; Type: SEQUENCE SET; Schema: public; Owner: nguyenngocson0811
+--
+
+SELECT pg_catalog.setval('erp_editor_uploads_id_seq', 1, false);
+
+
+--
+-- Data for Name: erp_pictures_picture_categories; Type: TABLE DATA; Schema: public; Owner: nguyenngocson0811
+--
+
+COPY erp_pictures_picture_categories (id, image_url, name, description, parent_id, custom_order, level, archived, creator_id, created_at, updated_at) FROM stdin;
+15	chen006.jpg	Chén	<p><strong>Cho thu&ecirc;:</strong> Ch&eacute;n,dĩa,ly,ấm t&aacute;ch tổ chức tiệc - sự kiện...</p>	6	10	2	f	1	2017-07-05 13:01:48.714882	2017-07-05 13:03:08.846072
+16	dia001.jpg	Dĩa		6	11	2	f	1	2017-07-05 13:05:12.991059	2017-07-05 13:05:26.392518
+17	ly14.jpg	Ly		6	12	2	f	1	2017-07-05 13:10:14.371001	2017-07-05 13:27:58.818685
+18	am10s.jpg	Ấm Tách		6	13	2	f	1	2017-07-05 13:13:05.542046	2017-07-05 13:13:05.542046
+7	\N	Bàn - Ghế	<p>Cho thu&ecirc;: B&agrave;n ghế tổ chức tiệc - sự kiện...</p>	\N	3	1	f	1	2017-07-05 11:55:48.300669	2017-07-05 13:18:27.734559
+8	\N	Thiết Bị Âm Thanh - Ánh Sáng - Sân Khấu		\N	4	1	f	1	2017-07-05 11:56:19.119976	2017-07-05 11:56:19.119976
+10	tiectrongoi.jpg	Setup Bàn Ghế	<p><strong>Nhận đặt tiệc:&nbsp;</strong>Cưới, hỏi, li&ecirc;n hoan, sinh nhật, hội nghị, buffet, teabreak...tại tư gia, mặt bằng, nh&agrave; h&agrave;ng, cơ quan, x&iacute; nghiệp,... Tư vấn &amp; Tổ chức tiệc - Sự kiện lưu động, trọn g&oacute;i.</p>	5	6	2	f	1	2017-07-05 12:19:56.162895	2017-07-05 13:03:23.6893
+11	trongoi002.jpg	Mâm Quả		5	7	2	f	1	2017-07-05 12:42:02.045001	2017-07-05 12:42:02.045001
+9	\N	Dụng Cụ Tổ Chức Tiệc - Sự Kiện		\N	5	1	f	1	2017-07-05 11:56:41.486397	2017-07-05 11:56:41.486397
+12	monan4.jpg	Món Ăn		5	8	2	f	1	2017-07-05 12:44:42.032647	2017-07-05 12:44:42.032647
+13	khongten.jpg	Bàn Thờ		5	9	2	f	1	2017-07-05 12:46:05.823826	2017-07-05 12:46:05.823826
+5	\N	Tổ Chức Tiệc Trọn Gói		\N	1	1	f	1	2017-07-05 11:54:28.350405	2017-07-05 11:54:28.350405
+6	\N	Chén - Dĩa - Ly		\N	2	1	f	1	2017-07-05 11:55:39.54921	2017-07-05 11:55:39.54921
+\.
+
+
+--
+-- Name: erp_pictures_picture_categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: nguyenngocson0811
+--
+
+SELECT pg_catalog.setval('erp_pictures_picture_categories_id_seq', 19, true);
+
+
+--
+-- Data for Name: erp_pictures_pictures; Type: TABLE DATA; Schema: public; Owner: nguyenngocson0811
+--
+
+COPY erp_pictures_pictures (id, image_url, custom_order, picture_category_id, created_at, updated_at) FROM stdin;
+1001	ban3.jpg	\N	7	2017-07-06 02:05:06.482481	2017-07-06 02:05:06.482481
+913	chen001.jpg	\N	15	2017-07-06 01:55:13.70084	2017-07-06 01:55:13.70084
+914	chen1.jpg	\N	15	2017-07-06 01:55:13.715234	2017-07-06 01:55:13.715234
+915	chen002.jpg	\N	15	2017-07-06 01:55:13.729834	2017-07-06 01:55:13.729834
+916	chen2.jpg	\N	15	2017-07-06 01:55:13.743059	2017-07-06 01:55:13.743059
+917	chen003.jpg	\N	15	2017-07-06 01:55:13.755874	2017-07-06 01:55:13.755874
+918	chen3.jpg	\N	15	2017-07-06 01:55:13.76815	2017-07-06 01:55:13.76815
+919	chen004.jpg	\N	15	2017-07-06 01:55:13.784268	2017-07-06 01:55:13.784268
+920	chen4.jpg	\N	15	2017-07-06 01:55:13.805497	2017-07-06 01:55:13.805497
+921	chen005.jpg	\N	15	2017-07-06 01:55:13.816856	2017-07-06 01:55:13.816856
+922	chen5.jpg	\N	15	2017-07-06 01:55:13.831243	2017-07-06 01:55:13.831243
+923	chen006.jpg	\N	15	2017-07-06 01:55:13.846545	2017-07-06 01:55:13.846545
+924	chen6.jpg	\N	15	2017-07-06 01:55:13.86064	2017-07-06 01:55:13.86064
+925	chen007.jpg	\N	15	2017-07-06 01:55:13.876569	2017-07-06 01:55:13.876569
+926	chen7.jpg	\N	15	2017-07-06 01:55:13.88987	2017-07-06 01:55:13.88987
+927	chen008.jpg	\N	15	2017-07-06 01:55:13.900989	2017-07-06 01:55:13.900989
+928	chen8.jpg	\N	15	2017-07-06 01:55:13.918539	2017-07-06 01:55:13.918539
+929	chen009.jpg	\N	15	2017-07-06 01:55:13.930704	2017-07-06 01:55:13.930704
+930	chen0010.jpg	\N	15	2017-07-06 01:55:13.948623	2017-07-06 01:55:13.948623
+1002	ban4.jpg	\N	7	2017-07-06 02:05:06.502654	2017-07-06 02:05:06.502654
+932	chen0013.jpg	\N	15	2017-07-06 01:55:14.022501	2017-07-06 01:55:14.022501
+933	chen0014.jpg	\N	15	2017-07-06 01:55:14.038165	2017-07-06 01:55:14.038165
+1003	ban5.jpg	\N	7	2017-07-06 02:05:06.520994	2017-07-06 02:05:06.520994
+1004	ban6.jpg	\N	7	2017-07-06 02:05:06.53662	2017-07-06 02:05:06.53662
+1005	ban7.jpg	\N	7	2017-07-06 02:05:06.558408	2017-07-06 02:05:06.558408
+1006	ban8.jpg	\N	7	2017-07-06 02:05:06.580667	2017-07-06 02:05:06.580667
+1007	ban9.jpg	\N	7	2017-07-06 02:05:06.595655	2017-07-06 02:05:06.595655
+1008	ban10.jpg	\N	7	2017-07-06 02:05:06.614348	2017-07-06 02:05:06.614348
+1009	ban11.jpg	\N	7	2017-07-06 02:05:06.627829	2017-07-06 02:05:06.627829
+1010	ban12.jpg	\N	7	2017-07-06 02:05:06.65447	2017-07-06 02:05:06.65447
+1011	ban13.jpg	\N	7	2017-07-06 02:05:06.666172	2017-07-06 02:05:06.666172
+1012	ban14.jpg	\N	7	2017-07-06 02:05:06.690568	2017-07-06 02:05:06.690568
+1013	ban15.jpg	\N	7	2017-07-06 02:05:06.713802	2017-07-06 02:05:06.713802
+1014	ban16.jpg	\N	7	2017-07-06 02:05:06.720967	2017-07-06 02:05:06.720967
+1015	ban17.jpg	\N	7	2017-07-06 02:05:06.740873	2017-07-06 02:05:06.740873
+1016	ban18.jpg	\N	7	2017-07-06 02:05:06.761716	2017-07-06 02:05:06.761716
+1017	ban19.jpg	\N	7	2017-07-06 02:05:06.779211	2017-07-06 02:05:06.779211
+1018	ban20.jpg	\N	7	2017-07-06 02:05:06.800855	2017-07-06 02:05:06.800855
+1019	ban21.jpg	\N	7	2017-07-06 02:05:06.830461	2017-07-06 02:05:06.830461
+1020	ban22.jpg	\N	7	2017-07-06 02:05:06.847055	2017-07-06 02:05:06.847055
+1021	ban25.jpg	\N	7	2017-07-06 02:05:06.864267	2017-07-06 02:05:06.864267
+1022	ban23.jpg	\N	7	2017-07-06 02:05:06.880182	2017-07-06 02:05:06.880182
+1023	ban24.jpg	\N	7	2017-07-06 02:05:06.899414	2017-07-06 02:05:06.899414
+1024	ban26.jpg	\N	7	2017-07-06 02:05:06.923962	2017-07-06 02:05:06.923962
+1025	at1s.jpg	\N	8	2017-07-06 02:06:54.563046	2017-07-06 02:06:54.563046
+1026	at2s.jpg	\N	8	2017-07-06 02:06:54.58315	2017-07-06 02:06:54.58315
+1027	at3s.jpg	\N	8	2017-07-06 02:06:54.604445	2017-07-06 02:06:54.604445
+870	ban11s.jpg	\N	10	2017-07-06 01:35:38.209425	2017-07-06 01:35:38.209425
+871	trongoi6.jpg	\N	10	2017-07-06 01:35:38.224659	2017-07-06 01:35:38.224659
+934	dia001.jpg	\N	16	2017-07-06 01:58:14.823139	2017-07-06 01:58:14.823139
+935	dia1.jpg	\N	16	2017-07-06 01:58:14.836473	2017-07-06 01:58:14.836473
+936	dia2.jpg	\N	16	2017-07-06 01:58:14.850921	2017-07-06 01:58:14.850921
+937	dia3.jpg	\N	16	2017-07-06 01:58:14.870204	2017-07-06 01:58:14.870204
+938	dia4.jpg	\N	16	2017-07-06 01:58:14.876678	2017-07-06 01:58:14.876678
+939	dia5.jpg	\N	16	2017-07-06 01:58:14.895109	2017-07-06 01:58:14.895109
+940	dia6.jpg	\N	16	2017-07-06 01:58:14.908071	2017-07-06 01:58:14.908071
+941	dia7.jpg	\N	16	2017-07-06 01:58:14.922598	2017-07-06 01:58:14.922598
+942	dia8.jpg	\N	16	2017-07-06 01:58:14.97668	2017-07-06 01:58:14.97668
+943	dia9.jpg	\N	16	2017-07-06 01:58:15.001485	2017-07-06 01:58:15.001485
+944	dia10.jpg	\N	16	2017-07-06 01:58:15.014711	2017-07-06 01:58:15.014711
+945	dia11.jpg	\N	16	2017-07-06 01:58:15.027426	2017-07-06 01:58:15.027426
+946	dia12.jpg	\N	16	2017-07-06 01:58:15.040658	2017-07-06 01:58:15.040658
+947	dia13.jpg	\N	16	2017-07-06 01:58:15.057944	2017-07-06 01:58:15.057944
+948	dia14.jpg	\N	16	2017-07-06 01:58:15.068176	2017-07-06 01:58:15.068176
+949	dia15.jpg	\N	16	2017-07-06 01:58:15.08272	2017-07-06 01:58:15.08272
+950	dia16.jpg	\N	16	2017-07-06 01:58:15.097911	2017-07-06 01:58:15.097911
+951	dia17.jpg	\N	16	2017-07-06 01:58:15.108508	2017-07-06 01:58:15.108508
+952	dia18.jpg	\N	16	2017-07-06 01:58:15.124614	2017-07-06 01:58:15.124614
+953	dia19.jpg	\N	16	2017-07-06 01:58:15.143337	2017-07-06 01:58:15.143337
+954	dia20.jpg	\N	16	2017-07-06 01:58:15.149679	2017-07-06 01:58:15.149679
+955	dia21.jpg	\N	16	2017-07-06 01:58:15.168801	2017-07-06 01:58:15.168801
+956	dia22.jpg	\N	16	2017-07-06 01:58:15.184074	2017-07-06 01:58:15.184074
+957	dia23.jpg	\N	16	2017-07-06 01:58:15.19746	2017-07-06 01:58:15.19746
+1028	at4s.jpg	\N	8	2017-07-06 02:06:54.629964	2017-07-06 02:06:54.629964
+1029	at5s.jpg	\N	8	2017-07-06 02:06:54.669099	2017-07-06 02:06:54.669099
+1030	at6s.jpg	\N	8	2017-07-06 02:06:54.693964	2017-07-06 02:06:54.693964
+1031	at7s.jpg	\N	8	2017-07-06 02:06:54.71541	2017-07-06 02:06:54.71541
+1032	at8s.jpg	\N	8	2017-07-06 02:06:54.736672	2017-07-06 02:06:54.736672
+1033	at9s.jpg	\N	8	2017-07-06 02:06:54.761932	2017-07-06 02:06:54.761932
+1034	at10s.jpg	\N	8	2017-07-06 02:06:54.780167	2017-07-06 02:06:54.780167
+1035	at11s.jpg	\N	8	2017-07-06 02:06:54.806662	2017-07-06 02:06:54.806662
+1036	at12s.jpg	\N	8	2017-07-06 02:06:54.820835	2017-07-06 02:06:54.820835
+848	tg01.jpg	\N	10	2017-07-06 01:34:20.284175	2017-07-06 01:34:20.284175
+849	tg02.jpg	\N	10	2017-07-06 01:34:20.300469	2017-07-06 01:34:20.300469
+850	tg03.jpg	\N	10	2017-07-06 01:34:20.321575	2017-07-06 01:34:20.321575
+851	tg04.jpg	\N	10	2017-07-06 01:34:20.355034	2017-07-06 01:34:20.355034
+852	tg05.jpg	\N	10	2017-07-06 01:34:20.37188	2017-07-06 01:34:20.37188
+853	tg06.jpg	\N	10	2017-07-06 01:34:20.392158	2017-07-06 01:34:20.392158
+854	tg07.jpg	\N	10	2017-07-06 01:34:20.415364	2017-07-06 01:34:20.415364
+855	tg08.jpg	\N	10	2017-07-06 01:34:20.432794	2017-07-06 01:34:20.432794
+856	tg09.jpg	\N	10	2017-07-06 01:34:20.45652	2017-07-06 01:34:20.45652
+857	tg10.jpg	\N	10	2017-07-06 01:34:20.479201	2017-07-06 01:34:20.479201
+858	tg11s.jpg	\N	10	2017-07-06 01:34:20.495368	2017-07-06 01:34:20.495368
+859	tg012.jpg	\N	10	2017-07-06 01:34:20.517888	2017-07-06 01:34:20.517888
+860	tg013.jpg	\N	10	2017-07-06 01:34:20.532161	2017-07-06 01:34:20.532161
+861	tg015.jpg	\N	10	2017-07-06 01:34:20.556525	2017-07-06 01:34:20.556525
+862	tg016.jpg	\N	10	2017-07-06 01:34:20.576974	2017-07-06 01:34:20.576974
+863	tg018.jpg	\N	10	2017-07-06 01:34:20.603691	2017-07-06 01:34:20.603691
+864	tg21.jpg	\N	10	2017-07-06 01:34:20.620719	2017-07-06 01:34:20.620719
+865	tg022.jpg	\N	10	2017-07-06 01:34:20.641897	2017-07-06 01:34:20.641897
+866	tg23.jpg	\N	10	2017-07-06 01:34:20.6627	2017-07-06 01:34:20.6627
+867	tg25s.jpg	\N	10	2017-07-06 01:34:20.675893	2017-07-06 01:34:20.675893
+868	tg26s.jpg	\N	10	2017-07-06 01:34:20.699774	2017-07-06 01:34:20.699774
+869	tg27s.jpg	\N	10	2017-07-06 01:34:20.724152	2017-07-06 01:34:20.724152
+959	ly1.jpg	\N	17	2017-07-06 02:00:42.936701	2017-07-06 02:00:42.936701
+960	ly2.jpg	\N	17	2017-07-06 02:00:42.94818	2017-07-06 02:00:42.94818
+961	ly4.jpg	\N	17	2017-07-06 02:00:42.96404	2017-07-06 02:00:42.96404
+962	ly3.jpg	\N	17	2017-07-06 02:00:42.981932	2017-07-06 02:00:42.981932
+963	ly5.jpg	\N	17	2017-07-06 02:00:42.989592	2017-07-06 02:00:42.989592
+964	ly6.jpg	\N	17	2017-07-06 02:00:43.008002	2017-07-06 02:00:43.008002
+965	ly7.jpg	\N	17	2017-07-06 02:00:43.026387	2017-07-06 02:00:43.026387
+966	ly8.jpg	\N	17	2017-07-06 02:00:43.041013	2017-07-06 02:00:43.041013
+967	ly9.jpg	\N	17	2017-07-06 02:00:43.056897	2017-07-06 02:00:43.056897
+968	ly10.jpg	\N	17	2017-07-06 02:00:43.074425	2017-07-06 02:00:43.074425
+969	ly11.jpg	\N	17	2017-07-06 02:00:43.083869	2017-07-06 02:00:43.083869
+970	ly12.jpg	\N	17	2017-07-06 02:00:43.09874	2017-07-06 02:00:43.09874
+971	ly13.jpg	\N	17	2017-07-06 02:00:43.112142	2017-07-06 02:00:43.112142
+972	ly14.jpg	\N	17	2017-07-06 02:00:43.126499	2017-07-06 02:00:43.126499
+1037	dc1.jpg	\N	9	2017-07-06 02:10:12.31568	2017-07-06 02:10:12.31568
+974	ly17.jpg	\N	17	2017-07-06 02:00:43.160033	2017-07-06 02:00:43.160033
+975	ly18.jpg	\N	17	2017-07-06 02:00:43.177462	2017-07-06 02:00:43.177462
+976	ly19.jpg	\N	17	2017-07-06 02:00:43.191776	2017-07-06 02:00:43.191776
+977	ly20.jpg	\N	17	2017-07-06 02:00:43.203505	2017-07-06 02:00:43.203505
+1038	dc2.jpg	\N	9	2017-07-06 02:10:12.342027	2017-07-06 02:10:12.342027
+1039	dc4.jpg	\N	9	2017-07-06 02:10:12.397155	2017-07-06 02:10:12.397155
+1040	dc5.jpg	\N	9	2017-07-06 02:10:12.430682	2017-07-06 02:10:12.430682
+1041	dc6.jpg	\N	9	2017-07-06 02:10:12.482462	2017-07-06 02:10:12.482462
+1042	dc7.jpg	\N	9	2017-07-06 02:10:12.517034	2017-07-06 02:10:12.517034
+1043	dc8.jpg	\N	9	2017-07-06 02:10:12.538986	2017-07-06 02:10:12.538986
+1044	dc9.jpg	\N	9	2017-07-06 02:10:12.594013	2017-07-06 02:10:12.594013
+1045	dc10.jpg	\N	9	2017-07-06 02:10:12.612879	2017-07-06 02:10:12.612879
+978	ly21.jpg	\N	17	2017-07-06 02:00:43.218358	2017-07-06 02:00:43.218358
+979	ly22.jpg	\N	17	2017-07-06 02:00:43.235327	2017-07-06 02:00:43.235327
+980	ly23.jpg	\N	17	2017-07-06 02:00:43.2474	2017-07-06 02:00:43.2474
+981	ly24.jpg	\N	17	2017-07-06 02:00:43.261335	2017-07-06 02:00:43.261335
+982	ly25.jpg	\N	17	2017-07-06 02:00:43.276241	2017-07-06 02:00:43.276241
+983	ly26.jpg	\N	17	2017-07-06 02:00:43.294752	2017-07-06 02:00:43.294752
+984	ly27.jpg	\N	17	2017-07-06 02:00:43.312105	2017-07-06 02:00:43.312105
+985	ly28.jpg	\N	17	2017-07-06 02:00:43.328235	2017-07-06 02:00:43.328235
+986	ly29.jpg	\N	17	2017-07-06 02:00:43.341919	2017-07-06 02:00:43.341919
+987	ly30.jpg	\N	17	2017-07-06 02:00:43.354797	2017-07-06 02:00:43.354797
+1046	dc11.jpg	\N	9	2017-07-06 02:10:12.651112	2017-07-06 02:10:12.651112
+1047	dc12.jpg	\N	9	2017-07-06 02:10:12.663417	2017-07-06 02:10:12.663417
+1048	dc13.jpg	\N	9	2017-07-06 02:10:12.679615	2017-07-06 02:10:12.679615
+1049	dc14.jpg	\N	9	2017-07-06 02:10:12.714807	2017-07-06 02:10:12.714807
+1050	dc15.jpg	\N	9	2017-07-06 02:10:12.737019	2017-07-06 02:10:12.737019
+1051	dc16.jpg	\N	9	2017-07-06 02:10:12.763572	2017-07-06 02:10:12.763572
+1052	dc17.jpg	\N	9	2017-07-06 02:10:12.80832	2017-07-06 02:10:12.80832
+1053	dc18.jpg	\N	9	2017-07-06 02:10:12.838626	2017-07-06 02:10:12.838626
+1054	dc19.jpg	\N	9	2017-07-06 02:10:12.884273	2017-07-06 02:10:12.884273
+1055	dc20.jpg	\N	9	2017-07-06 02:10:12.932397	2017-07-06 02:10:12.932397
+1056	dc21.jpg	\N	9	2017-07-06 02:10:12.966002	2017-07-06 02:10:12.966002
+1057	dc23.jpg	\N	9	2017-07-06 02:10:13.006672	2017-07-06 02:10:13.006672
+1058	dc24.jpg	\N	9	2017-07-06 02:10:13.036926	2017-07-06 02:10:13.036926
+1059	dc25.jpg	\N	9	2017-07-06 02:10:13.072413	2017-07-06 02:10:13.072413
+1060	dc26.jpg	\N	9	2017-07-06 02:10:13.108198	2017-07-06 02:10:13.108198
+1061	dc27.jpg	\N	9	2017-07-06 02:10:13.14367	2017-07-06 02:10:13.14367
+1062	dc28.jpg	\N	9	2017-07-06 02:10:13.200614	2017-07-06 02:10:13.200614
+1063	dc29.jpg	\N	9	2017-07-06 02:10:13.256076	2017-07-06 02:10:13.256076
+1064	dc30.jpg	\N	9	2017-07-06 02:10:13.320946	2017-07-06 02:10:13.320946
+1065	dc31.jpg	\N	9	2017-07-06 02:10:13.399238	2017-07-06 02:10:13.399238
+1066	dc32.jpg	\N	9	2017-07-06 02:10:13.535694	2017-07-06 02:10:13.535694
+1067	dc33.jpg	\N	9	2017-07-06 02:10:14.115779	2017-07-06 02:10:14.115779
+1068	dc34.jpg	\N	9	2017-07-06 02:10:14.152507	2017-07-06 02:10:14.152507
+1069	dc35.jpg	\N	9	2017-07-06 02:10:14.220077	2017-07-06 02:10:14.220077
+1070	dc36.jpg	\N	9	2017-07-06 02:10:14.264854	2017-07-06 02:10:14.264854
+1071	dc37.jpg	\N	9	2017-07-06 02:10:14.301085	2017-07-06 02:10:14.301085
+1072	dc38.jpg	\N	9	2017-07-06 02:10:14.349433	2017-07-06 02:10:14.349433
+872	mq8.jpg	\N	11	2017-07-06 01:38:57.67185	2017-07-06 01:38:57.67185
+873	mq9.jpg	\N	11	2017-07-06 01:38:57.691941	2017-07-06 01:38:57.691941
+874	mq10.jpg	\N	11	2017-07-06 01:38:57.714853	2017-07-06 01:38:57.714853
+875	mq11.jpg	\N	11	2017-07-06 01:38:57.735318	2017-07-06 01:38:57.735318
+876	mq12.jpg	\N	11	2017-07-06 01:38:57.756289	2017-07-06 01:38:57.756289
+877	mq13.jpg	\N	11	2017-07-06 01:38:57.77639	2017-07-06 01:38:57.77639
+878	mq14.jpg	\N	11	2017-07-06 01:38:57.80236	2017-07-06 01:38:57.80236
+879	mq15.jpg	\N	11	2017-07-06 01:38:57.827996	2017-07-06 01:38:57.827996
+880	mq16.jpg	\N	11	2017-07-06 01:38:57.845171	2017-07-06 01:38:57.845171
+881	mq17.jpg	\N	11	2017-07-06 01:38:57.866693	2017-07-06 01:38:57.866693
+882	mq18.jpg	\N	11	2017-07-06 01:38:57.883714	2017-07-06 01:38:57.883714
+883	mq19.jpg	\N	11	2017-07-06 01:38:57.912521	2017-07-06 01:38:57.912521
+988	am1s.jpg	\N	18	2017-07-06 02:02:40.310144	2017-07-06 02:02:40.310144
+989	am2s.jpg	\N	18	2017-07-06 02:02:40.328654	2017-07-06 02:02:40.328654
+990	am4s.jpg	\N	18	2017-07-06 02:02:40.352087	2017-07-06 02:02:40.352087
+991	am3s.jpg	\N	18	2017-07-06 02:02:40.371681	2017-07-06 02:02:40.371681
+992	am5s.jpg	\N	18	2017-07-06 02:02:40.392411	2017-07-06 02:02:40.392411
+993	am6s.jpg	\N	18	2017-07-06 02:02:40.415582	2017-07-06 02:02:40.415582
+994	am7s.jpg	\N	18	2017-07-06 02:02:40.444318	2017-07-06 02:02:40.444318
+995	am8s.jpg	\N	18	2017-07-06 02:02:40.466372	2017-07-06 02:02:40.466372
+996	am10s.jpg	\N	18	2017-07-06 02:02:40.488064	2017-07-06 02:02:40.488064
+997	am11s.jpg	\N	18	2017-07-06 02:02:40.508362	2017-07-06 02:02:40.508362
+998	am12s.jpg	\N	18	2017-07-06 02:02:40.526463	2017-07-06 02:02:40.526463
+999	am9s.jpg	\N	18	2017-07-06 02:02:40.538438	2017-07-06 02:02:40.538438
+884	ma1.jpg	\N	12	2017-07-06 01:40:52.279556	2017-07-06 01:40:52.279556
+885	ma2.jpg	\N	12	2017-07-06 01:40:52.295213	2017-07-06 01:40:52.295213
+886	ma3.jpg	\N	12	2017-07-06 01:40:52.319843	2017-07-06 01:40:52.319843
+887	ma4.jpg	\N	12	2017-07-06 01:40:52.339409	2017-07-06 01:40:52.339409
+888	ma5.jpg	\N	12	2017-07-06 01:40:52.357254	2017-07-06 01:40:52.357254
+889	ma6.jpg	\N	12	2017-07-06 01:40:52.370911	2017-07-06 01:40:52.370911
+890	ma7.jpg	\N	12	2017-07-06 01:40:52.385723	2017-07-06 01:40:52.385723
+891	ma8.jpg	\N	12	2017-07-06 01:40:52.404636	2017-07-06 01:40:52.404636
+892	ma9.jpg	\N	12	2017-07-06 01:40:52.419464	2017-07-06 01:40:52.419464
+893	ma10.jpg	\N	12	2017-07-06 01:40:52.439338	2017-07-06 01:40:52.439338
+894	ma11.jpg	\N	12	2017-07-06 01:40:52.454458	2017-07-06 01:40:52.454458
+895	ma12.jpg	\N	12	2017-07-06 01:40:52.468587	2017-07-06 01:40:52.468587
+896	ma13.jpg	\N	12	2017-07-06 01:40:52.483352	2017-07-06 01:40:52.483352
+897	ma14.jpg	\N	12	2017-07-06 01:40:52.502962	2017-07-06 01:40:52.502962
+898	ma15.jpg	\N	12	2017-07-06 01:40:52.520156	2017-07-06 01:40:52.520156
+899	ma16.jpg	\N	12	2017-07-06 01:40:52.564666	2017-07-06 01:40:52.564666
+901	bt.jpg	\N	13	2017-07-06 01:44:13.252255	2017-07-06 01:44:13.252255
+902	bt3.jpg	\N	13	2017-07-06 01:44:13.271652	2017-07-06 01:44:13.271652
+903	bt4.jpg	\N	13	2017-07-06 01:44:13.298426	2017-07-06 01:44:13.298426
+904	bt5.jpg	\N	13	2017-07-06 01:44:13.318897	2017-07-06 01:44:13.318897
+905	bt6.jpg	\N	13	2017-07-06 01:44:13.342509	2017-07-06 01:44:13.342509
+906	bt7.jpg	\N	13	2017-07-06 01:44:13.372813	2017-07-06 01:44:13.372813
+907	bt8.jpg	\N	13	2017-07-06 01:44:13.398521	2017-07-06 01:44:13.398521
+908	bt9.jpg	\N	13	2017-07-06 01:44:13.419592	2017-07-06 01:44:13.419592
+909	bt10.jpg	\N	13	2017-07-06 01:44:13.441895	2017-07-06 01:44:13.441895
+910	bt11.jpg	\N	13	2017-07-06 01:44:13.466278	2017-07-06 01:44:13.466278
+911	bt12.jpg	\N	13	2017-07-06 01:44:13.486024	2017-07-06 01:44:13.486024
+912	bt13.jpg	\N	13	2017-07-06 01:44:13.50484	2017-07-06 01:44:13.50484
+\.
+
+
+--
+-- Name: erp_pictures_pictures_id_seq; Type: SEQUENCE SET; Schema: public; Owner: nguyenngocson0811
+--
+
+SELECT pg_catalog.setval('erp_pictures_pictures_id_seq', 1073, true);
+
+
+--
+-- Data for Name: erp_users; Type: TABLE DATA; Schema: public; Owner: nguyenngocson0811
+--
+
+COPY erp_users (id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, provider, uid, backend_access, created_at, updated_at, name, avatar, timezone, active, creator_id, permissions, confirmation_token, confirmed_at, confirmation_sent_at) FROM stdin;
+1	admin@globalnaturesoft.com	$2a$11$ta8FDZI2.lGEZX7xZBR5BO0ZPVdYdAHFlMLNn9FWMHAPSlpKrr792	\N	\N	\N	5	2017-07-06 01:19:49.826243	2017-07-05 10:40:23.86675	192.168.52.1	192.168.52.1	\N	\N	t	2017-07-04 16:10:43.046918	2017-07-06 01:19:49.828655	Super Admin	\N	\N	t	\N	\N	akebq6mmKtj1wr3iPFif	2017-07-04 16:23:55.71841	2017-07-04 16:10:43.047092
+\.
+
+
+--
+-- Name: erp_users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: nguyenngocson0811
+--
+
+SELECT pg_catalog.setval('erp_users_id_seq', 1, true);
+
+
+--
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: nguyenngocson0811
+--
+
+COPY schema_migrations (version) FROM stdin;
+20161123090102
+20161212042313
+20170313021641
+20170428012039
+20170503020426
+20170703160242
+20170705094413
+20170518093622
+20170518095623
+20170523025347
+\.
+
+
+--
+-- Name: ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: nguyenngocson0811
+--
+
+ALTER TABLE ONLY ar_internal_metadata
+    ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: erp_banners_banners_pkey; Type: CONSTRAINT; Schema: public; Owner: nguyenngocson0811
+--
+
+ALTER TABLE ONLY erp_banners_banners
+    ADD CONSTRAINT erp_banners_banners_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: erp_banners_categories_pkey; Type: CONSTRAINT; Schema: public; Owner: nguyenngocson0811
+--
+
+ALTER TABLE ONLY erp_banners_categories
+    ADD CONSTRAINT erp_banners_categories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: erp_editor_uploads_pkey; Type: CONSTRAINT; Schema: public; Owner: nguyenngocson0811
+--
+
+ALTER TABLE ONLY erp_editor_uploads
+    ADD CONSTRAINT erp_editor_uploads_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: erp_pictures_picture_categories_pkey; Type: CONSTRAINT; Schema: public; Owner: nguyenngocson0811
+--
+
+ALTER TABLE ONLY erp_pictures_picture_categories
+    ADD CONSTRAINT erp_pictures_picture_categories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: erp_pictures_pictures_pkey; Type: CONSTRAINT; Schema: public; Owner: nguyenngocson0811
+--
+
+ALTER TABLE ONLY erp_pictures_pictures
+    ADD CONSTRAINT erp_pictures_pictures_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: erp_users_pkey; Type: CONSTRAINT; Schema: public; Owner: nguyenngocson0811
+--
+
+ALTER TABLE ONLY erp_users
+    ADD CONSTRAINT erp_users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: nguyenngocson0811
+--
+
+ALTER TABLE ONLY schema_migrations
+    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: index_erp_banners_banners_on_category_id; Type: INDEX; Schema: public; Owner: nguyenngocson0811
+--
+
+CREATE INDEX index_erp_banners_banners_on_category_id ON erp_banners_banners USING btree (category_id);
+
+
+--
+-- Name: index_erp_banners_banners_on_creator_id; Type: INDEX; Schema: public; Owner: nguyenngocson0811
+--
+
+CREATE INDEX index_erp_banners_banners_on_creator_id ON erp_banners_banners USING btree (creator_id);
+
+
+--
+-- Name: index_erp_banners_categories_on_creator_id; Type: INDEX; Schema: public; Owner: nguyenngocson0811
+--
+
+CREATE INDEX index_erp_banners_categories_on_creator_id ON erp_banners_categories USING btree (creator_id);
+
+
+--
+-- Name: index_erp_pictures_picture_categories_on_creator_id; Type: INDEX; Schema: public; Owner: nguyenngocson0811
+--
+
+CREATE INDEX index_erp_pictures_picture_categories_on_creator_id ON erp_pictures_picture_categories USING btree (creator_id);
+
+
+--
+-- Name: index_erp_pictures_pictures_on_picture_category_id; Type: INDEX; Schema: public; Owner: nguyenngocson0811
+--
+
+CREATE INDEX index_erp_pictures_pictures_on_picture_category_id ON erp_pictures_pictures USING btree (picture_category_id);
+
+
+--
+-- Name: index_erp_users_on_confirmation_token; Type: INDEX; Schema: public; Owner: nguyenngocson0811
+--
+
+CREATE UNIQUE INDEX index_erp_users_on_confirmation_token ON erp_users USING btree (confirmation_token);
+
+
+--
+-- Name: index_erp_users_on_creator_id; Type: INDEX; Schema: public; Owner: nguyenngocson0811
+--
+
+CREATE INDEX index_erp_users_on_creator_id ON erp_users USING btree (creator_id);
+
+
+--
+-- Name: index_erp_users_on_email; Type: INDEX; Schema: public; Owner: nguyenngocson0811
+--
+
+CREATE UNIQUE INDEX index_erp_users_on_email ON erp_users USING btree (email);
+
+
+--
+-- Name: index_erp_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: nguyenngocson0811
+--
+
+CREATE UNIQUE INDEX index_erp_users_on_reset_password_token ON erp_users USING btree (reset_password_token);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
