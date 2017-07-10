@@ -86,7 +86,11 @@
       <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:1099px;height:400px;overflow:hidden;">
           <% Erp::Banners::Banner.get_home_sliders.each do |slider| %>
           <div>
-              <%= image_tag slider.image_url.thumb, alt: slider.name, title: slider.name %>
+              <% if slider.link_url.present? %>
+              <%= link_to (image_tag slider.image_url.thumb, alt: slider.name, title: slider.name), slider.link_url, title: slider.name %>
+              <% else %>
+                <%= image_tag slider.image_url.thumb, alt: slider.name, title: slider.name %>
+              <% end %>
           </div>
           <% end %>
       </div>
