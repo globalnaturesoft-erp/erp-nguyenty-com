@@ -1,7 +1,9 @@
 <div id="slogan">
     <p>
+        <% if Erp::Contents::Content.get_slide_info.present? %>
         <marquee onmouseover="this.stop()" onmouseout="this.start()" scrollamount="15" width="90%">
             <%= Erp::Contents::Content.get_slide_info.content.html_safe if  Erp::Contents::Content.get_slide_info.content.present? %>
         </marquee>
+        <% end %>
     </p>
 </div>

@@ -1,3 +1,5 @@
-<div class="text-justify">                    
-    <%= Erp::Contents::Content.get_footer_info.content.html_safe if  Erp::Contents::Content.get_footer_info.content.present? %>
+<div class="text-justify">
+    <% if Erp::Contents::Content.get_footer_info.present? %>
+        <%= Erp::Contents::Content.get_footer_info.content.html_safe if  Erp::Contents::Content.get_footer_info.content.present? %>
+    <% end %>
 </div>
